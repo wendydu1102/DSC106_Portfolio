@@ -7,7 +7,7 @@ function $$(selector, context = document) {
 // -- Automatic navigation menu --
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/"
-  : "/portfolio/"; // Your repository name on GitHub Pages
+  : "/DSC106_Portfolio/"; 
 
 let pages = [
   { url: '', title: 'Home' },
