@@ -7,7 +7,7 @@ function $$(selector, context = document) {
 // -- Automatic navigation menu --
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/"
-  : "/portfolio/"; // Change this to your repository name on GitHub Pages
+  : "/portfolio/"; // Your repository name on GitHub Pages
 
 let pages = [
   { url: '', title: 'Home' },
@@ -26,6 +26,7 @@ for (let p of pages) {
   let url = p.url;
   let title = p.title;
   
+  // Adjust URL for local vs. GitHub Pages hosting
   url = !url.startsWith('http') ? BASE_PATH + url : url;
 
   let a = document.createElement('a');
@@ -46,7 +47,7 @@ for (let p of pages) {
   ul.append(li);
 }
 
-// -- Dark mode --
+// -- Dark mode switch --
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
@@ -70,10 +71,12 @@ function setColorScheme(colorScheme) {
     }
 }
 
+// Apply saved theme on page load
 if ("colorScheme" in localStorage) {
     setColorScheme(localStorage.colorScheme);
 }
 
+// Add event listener for theme changes
 colorSchemeSelect?.addEventListener('input', function (event) {
   setColorScheme(event.target.value);
 });
@@ -86,7 +89,7 @@ contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
   
     const data = new FormData(contactForm);
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(); // This handles URL encoding correctly
   
     for (const [name, value] of data) {
       params.append(name, value);
