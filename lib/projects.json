@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Pathfinder",
+    "year": "2024",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "This personal project is all about creating a fun, inviting, and super helpful online page for students and young professionals to explore exciting career paths and discover more about themselves through personality insights. Think of it as a cheerful guide on the journey to figuring out 'what's next?'"
+  },
+  {
+    "title": "Datamaid",
+    "year": "2024",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A data-driven project aimed at cleaning and analyzing datasets. Contributed to data preprocessing, exploratory data analysis, and visualization tasks to uncover insights."
+  },
+  {
+    "title": "AI Voice Cloning",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "An academic group project for COGS 108: Data Science in Practice. This project involved data collection, analysis, and reporting on a chosen topic, applying data science methodologies."
+  },
+  {
+    "title": "Project Four",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2023. Lorem ipsum dolor sit amet consectetur adipisicing elit."
+  },
+  {
+    "title": "Project Five",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2023. Magnam dolor quos, quod assumenda explicabo odio."
+  },
+  {
+    "title": "Project Six",
+    "year": "2022",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2022. Nobis ipsa laudantium quas eum veritatis ullam sint."
+  },
+  {
+    "title": "Project Seven",
+    "year": "2022",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2022. Porro minima modi molestias doloribus cumque odit."
+  },
+  {
+    "title": "Project Eight",
+    "year": "2021",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2021. Lorem ipsum dolor sit amet consectetur adipisicing elit."
+  },
+  {
+    "title": "Project Nine",
+    "year": "2021",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2021. Magnam dolor quos, quod assumenda explicabo odio."
+  },
+  {
+    "title": "Project Ten",
+    "year": "2020",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2020. Nobis ipsa laudantium quas eum veritatis ullam sint."
+  },
+  {
+    "title": "Project Eleven",
+    "year": "2020",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2020. Porro minima modi molestias doloribus cumque odit."
+  },
+  {
+    "title": "Project Twelve",
+    "year": "2019",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Placeholder description for a project from 2019. This is the twelfth and final placeholder project."
+  }
+]
