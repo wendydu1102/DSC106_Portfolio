@@ -1,7 +1,19 @@
 [
   {
+    "title": "AI Voice Cloning",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "An academic group project for COGS 108: Data Science in Practice. This project involved data collection, analysis, and reporting on a chosen topic, applying data science methodologies."
+  },
+  {
+    "title": "Persuasive vs. Deceptive",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "An exploration into persuasive versus deceptive data visualization. This project investigates the claim that increased abortion clinic access corresponds with higher abortion rates by creating two contrasting visualizations from the same dataset. The full report is available here <a href='https://igobywendy.github.io/dsc106_project2/report.html' target='_blank' rel='noopener noreferrer'>here</a>."
+  },
+  {
     "title": "Pathfinder",
-    "year": "2024",
+    "year": "2025",
     "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "This personal project is all about creating a fun, inviting, and super helpful online page for students and young professionals to explore exciting career paths and discover more about themselves through personality insights. Think of it as a cheerful guide on the journey to figuring out 'what's next?'"
   },
@@ -10,12 +22,6 @@
     "year": "2024",
     "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A data-driven project aimed at cleaning and analyzing datasets. Contributed to data preprocessing, exploratory data analysis, and visualization tasks to uncover insights."
-  },
-  {
-    "title": "AI Voice Cloning",
-    "year": "2023",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "An academic group project for COGS 108: Data Science in Practice. This project involved data collection, analysis, and reporting on a chosen topic, applying data science methodologies."
   },
   {
     "title": "Project Four",

@@ -84,7 +84,7 @@ form label textarea {
 
 .projects article {
     display: grid;
-    grid-template-rows: subgrid;
+    grid-template-rows: auto auto 1fr;
     grid-row: span 3;
     padding: 1em;
     border: 1px solid #eee; 
@@ -262,4 +262,121 @@ form label textarea {
     font-size: 250%;
     font-weight: 300;
     margin-left: 0;
+}
+
+/* LAB 5 STYLES START HERE */
+
+/* Project Year Styling */
+.project-year {
+    display: block;
+    margin-top: 0.5em;
+    font-family: Baskerville, "Goudy Old Style", "Palatino", "Book Antiqua", serif;
+    font-variant-numeric: oldstyle-nums;
+    color: #666;
+    font-size: 0.9em;
+}
+
+@media (prefers-color-scheme: dark) {
+    .project-year {
+        color: #aaa;
+    }
+}
+
+.projects article > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+/* Chart and Legend Styling */
+.chart-container {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    flex-wrap: wrap;
+    margin-block: 2em;
+    border: 1px solid oklch(50% 10% 200 / 20%);
+    padding: 1em;
+    border-radius: 5px;
+}
+
+#projects-pie-plot {
+    max-width: 20em;
+    min-width: 15em;
+    flex: 1 1 15em;
+    overflow: visible;
+}
+
+.legend {
+    flex: 2 1 20em;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    gap: 0.5em 1em;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    padding: 0.2em;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.legend-item:hover {
+    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
+}
+
+.swatch {
+    width: 1em;
+    aspect-ratio: 1;
+    background: var(--color);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    width: 100%;
+    padding: 0.75em 1em;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 2em;
+    box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+    .search-bar {
+        background-color: #333;
+        border-color: #555;
+        color: white;
+    }
+    .projects article {
+        border-color: #444;
+    }
+}
+
+
+/* D3 Visualization Interactivity */
+#projects-pie-plot path {
+    cursor: pointer;
+    transition: opacity 300ms ease-in-out;
+}
+
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+    opacity: 0.5;
+}
+
+.selected {
+  --color: oklch(60% 0.25 40) !important;
+}
+
+.selected:is(path) {
+  fill: var(--color);
 }

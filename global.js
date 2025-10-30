@@ -114,7 +114,7 @@ export async function fetchJSON(url) {
   }
 }
 
-// -- Step 1.4: Function to render projects --
+// -- Step 1.4 & 0.1: Function to render projects, now including the year --
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   if (!containerElement) {
     console.error("renderProjects: containerElement is null or undefined.");
@@ -130,13 +130,15 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
   for (const project of projects) {
     const article = document.createElement('article');
     
-    // Use a placeholder if image is missing
     const imageUrl = project.image ? project.image : 'https://via.placeholder.com/300x200';
     
     article.innerHTML = `
         <${headingLevel}>${project.title}</${headingLevel}>
         <img src="${imageUrl}" alt="Screenshot of ${project.title}">
-        <p>${project.description}</p>
+        <div>
+            <p>${project.description}</p>
+            <span class="project-year">${project.year}</span>
+        </div>
     `;
     containerElement.appendChild(article);
   }
