@@ -20,6 +20,20 @@ h1 {
     font-size: 400%;
 }
 
+pre {
+    background: #eee;
+    padding: 1em;
+    border-radius: 5px;
+    white-space: pre-wrap;
+}
+
+@media (prefers-color-scheme: dark) {
+    pre {
+        background: #333;
+    }
+}
+
+
 nav {
     display: flex;
     margin-bottom: 2em;
@@ -242,27 +256,51 @@ form label textarea {
     font-size: 80%;
 }
 
-/* GitHub Stats Styling */
-#profile-stats dl {
+/* GitHub Stats Styling & Summary Stats */
+#profile-stats dl,
+dl.stats {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
     gap: 0.5em 2em;
+    text-align: center;
 }
 
-#profile-stats dt {
+#profile-stats dt,
+dl.stats dt {
     grid-row: 1;
+    font-size: 0.8em;
     font-weight: bold;
-    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: oklch(65% 0.1 250);
 }
 
-#profile-stats dd {
+#profile-stats dd,
+#stats dl.stats dd { /* More specific selector for summary */
     grid-row: 2;
-    text-align: center;
     font-size: 250%;
     font-weight: 300;
     margin-left: 0;
+    line-height: 1;
 }
+
+/* Specific styling for language breakdown which also uses dl.stats */
+#language-breakdown {
+    margin-top: 1em;
+}
+
+#language-breakdown dd {
+    font-size: 150%;
+    grid-row: 2;
+    margin-left: 0;
+    font-weight: 300;
+    line-height: 1;
+}
+#language-breakdown dt {
+    grid-row: 1;
+    font-size: 1em;
+}
+
 
 /* LAB 5 STYLES START HERE */
 
@@ -379,4 +417,101 @@ form label textarea {
 
 .selected:is(path) {
   fill: var(--color);
+}
+
+/* LAB 7 ADDITIONS */
+
+/* Tooltip Info Layout */
+dl.info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5em 1em;
+}
+
+dl.info dt {
+    grid-column: 1;
+    font-weight: bold;
+    color: oklch(65% 0.1 250);
+}
+
+dl.info dd {
+    grid-column: 2;
+    margin: 0;
+    font-weight: 300;
+}
+
+/* Tooltip Specific Styles */
+.tooltip {
+    position: fixed;
+    background: oklch(95% 0.02 250 / 0.8);
+    backdrop-filter: blur(5px);
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    max-width: 300px;
+    pointer-events: none; /* Allows mouse events to pass through */
+    z-index: 10;
+}
+
+dl.info {
+    transition-duration: 200ms;
+    transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Scatterplot Styles */
+#chart {
+    margin-block: 2em;
+}
+
+#chart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.gridlines line, .gridlines .domain {
+    stroke: oklch(50% 10% 200 / 20%);
+}
+
+.gridlines .domain {
+    stroke: none;
+}
+
+circle {
+    transition: 200ms;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+circle:hover {
+    transform: scale(1.5);
+    stroke: black;
+    stroke-width: 1px;
+}
+
+circle.selected {
+  fill: #ff6b6b;
+  stroke: black;
+  stroke-width: 1.5px;
+}
+
+/* Brushing Styles */
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+.selection {
+  fill: var(--color-accent);
+  fill-opacity: 0.1;
+  stroke: var(--color-accent);
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 0.5s linear infinite;
 }
