@@ -20,6 +20,10 @@ h1 {
     font-size: 400%;
 }
 
+pre, code {
+    font-family: monospace;
+}
+
 pre {
     background: #eee;
     padding: 1em;
@@ -99,7 +103,6 @@ form label textarea {
 .projects article {
     display: grid;
     grid-template-rows: auto auto 1fr;
-    grid-row: span 3;
     padding: 1em;
     border: 1px solid #eee; 
 }
@@ -260,7 +263,7 @@ form label textarea {
 #profile-stats dl,
 dl.stats {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
     gap: 0.5em 2em;
     text-align: center;
 }
@@ -287,6 +290,10 @@ dl.stats dt {
 /* Specific styling for language breakdown which also uses dl.stats */
 #language-breakdown {
     margin-top: 1em;
+}
+
+#language-breakdown .lang-stat {
+    display: contents; /* Allows dt/dd to be direct children of the grid */
 }
 
 #language-breakdown dd {
@@ -318,13 +325,6 @@ dl.stats dt {
     .project-year {
         color: #aaa;
     }
-}
-
-.projects article > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
 }
 
 /* Chart and Legend Styling */
@@ -482,10 +482,19 @@ dl.info[hidden]:not(:hover, :focus-within) {
     stroke: none;
 }
 
+/* LAB 8 STYLES */
+
+/* Circle Transitions */
 circle {
-    transition: 200ms;
+    transition: all 200ms;
     transform-origin: center;
     transform-box: fill-box;
+}
+
+@starting-style {
+  circle {
+    r: 0;
+  }
 }
 
 circle:hover {
@@ -500,18 +509,130 @@ circle.selected {
   stroke-width: 1.5px;
 }
 
-/* Brushing Styles */
-@keyframes marching-ants {
-  to {
-    stroke-dashoffset: -8;
-  }
+/* Unit Visualization */
+#files {
+  display: grid;
+  grid-template-columns: minmax(10em, 1fr) 4fr;
+  gap: 0.5em 1em;
 }
 
-.selection {
-  fill: var(--color-accent);
-  fill-opacity: 0.1;
-  stroke: var(--color-accent);
-  stroke-opacity: 0.7;
-  stroke-dasharray: 5 3;
-  animation: marching-ants 0.5s linear infinite;
+#files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  border-bottom: 1px solid #eee;
+  padding-block: 0.5em;
+}
+
+#files dt {
+  grid-column: 1;
+  font-family: monospace;
+}
+#files dt small {
+    display: block;
+    opacity: 0.7;
+    font-size: 0.8em;
+}
+
+
+#files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+.loc {
+  display: block;
+  width: 0.5em;
+  aspect-ratio: 1;
+  background: var(--color, steelblue);
+  border-radius: 50%;
+}
+
+/* Scrollytelling Layout */
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  margin-block: 3em;
+}
+
+#scrolly-1 > * {
+  flex: 1;
+  min-width: 0;
+}
+
+#scatter-story {
+  position: relative;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 1rem;
+  height: 90vh;
+}
+
+.step {
+    padding-bottom: 50vh;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: oklch(98% 0 0 / 0.7);
+    border: 1px solid oklch(90% 0 0);
+    border-radius: 5px;
+}
+
+.step h3 {
+    margin-top: 0;
+}
+
+/* Updated Project Card styles */
+.project-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 1em; 
+}
+
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; 
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.project-button {
+    background-color: var(--color-accent);
+    color: white !important;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.project-button:hover {
+    background-color: color-mix(in oklch, var(--color-accent), black 10%);
+    border-bottom: none; 
+    padding: 0.4em 0.8em; 
+    color: white !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    #files > div {
+        border-bottom-color: #444;
+    }
+    .step {
+        background: oklch(25% 0 0 / 0.7);
+        border-color: oklch(35% 0 0);
+    }
 }

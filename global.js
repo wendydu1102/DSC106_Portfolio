@@ -115,7 +115,7 @@ export async function fetchJSON(url) {
   }
 }
 
-// -- Step 1.4 & 0.1: Function to render projects, now including the year --
+// -- Step 1.4 & 0.1: Function to render projects, now including the year and a button --
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   if (!containerElement) {
     console.error("renderProjects: containerElement is null or undefined.");
@@ -133,17 +133,25 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     
     const imageUrl = project.image ? project.image : 'https://via.placeholder.com/300x200';
     
+    const buttonHtml = project.url 
+      ? `<a href="${project.url}" class="project-button" target="_blank" rel="noopener noreferrer">View Project</a>` 
+      : '';
+
     article.innerHTML = `
         <${headingLevel}>${project.title}</${headingLevel}>
         <img src="${imageUrl}" alt="Screenshot of ${project.title}">
-        <div>
+        <div class="project-content">
             <p>${project.description}</p>
-            <span class="project-year">${project.year}</span>
+            <div class="project-footer">
+                <span class="project-year">${project.year}</span>
+                ${buttonHtml}
+            </div>
         </div>
     `;
     containerElement.appendChild(article);
   }
 }
+
 
 // -- Step 3.2: Function to fetch GitHub data --
 export async function fetchGitHubData(username) {
