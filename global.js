@@ -131,7 +131,11 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
   for (const project of projects) {
     const article = document.createElement('article');
     
-    const imageUrl = project.image ? project.image : 'https://via.placeholder.com/300x200';
+    let imageUrl = 'https://via.placeholder.com/300x200';
+    if (project.image) {
+      // Use BASE_PATH to construct the correct image URL
+      imageUrl = project.image.startsWith('http') ? project.image : BASE_PATH + project.image;
+    }
     
     const buttonHtml = project.url 
       ? `<a href="${project.url}" class="project-button" target="_blank" rel="noopener noreferrer">View Project</a>` 

@@ -132,7 +132,7 @@ form label textarea {
     margin: 0;
 }
 
-.home-page img {
+.home-page > img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
