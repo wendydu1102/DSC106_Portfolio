@@ -8,7 +8,15 @@ html {
 
 body {
     max-width: 100ch;
-    margin-inline: max(1em, (100% - 100ch) / 2);
+    margin-inline: 1em; /* Mobile default */
+    padding-bottom: 2em;
+}
+
+/* Tablet and Desktop layouts */
+@media (min-width: 800px) {
+    body {
+        margin-inline: max(1em, (100% - 100ch) / 2);
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -17,7 +25,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 400%;
+    font-size: 2.5rem; /* Mobile scale */
+}
+
+@media (min-width: 600px) {
+    h1 {
+        font-size: 4rem;
+    }
 }
 
 pre, code {
@@ -29,6 +43,7 @@ pre {
     padding: 1em;
     border-radius: 5px;
     white-space: pre-wrap;
+    overflow-x: auto;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,9 +52,10 @@ pre {
     }
 }
 
-
+/* Navigation - wrap on very small screens */
 nav {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 2em;
     --border-color: oklch(50% 10% 200 / 40%);
     border-bottom: 1px solid var(--border-color);
@@ -51,90 +67,94 @@ nav li {
 }
 
 nav a {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 80px;
     text-decoration: none;
     color: inherit;
     text-align: center;
-    padding: 0.5em;
+    padding: 0.75em 0.5em;
 }
 
 nav a:hover {
     border-bottom: 0.4em solid var(--color-accent);
-    padding-bottom: calc(0.5em - 0.4em);
+    padding-bottom: calc(0.75em - 0.4em);
     background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 nav a.current {
     border-bottom: 0.4em solid var(--border-color);
-    padding-bottom: calc(0.5em - 0.4em);
+    padding-bottom: calc(0.75em - 0.4em);
 }
 
-input, textarea, button, select {
-    font: inherit;
+/* Theme Switcher Formatting */
+.color-scheme {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
 }
 
-form {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1em;
-}
-
-form label,
-form button {
-    grid-column: 1 / -1;
-}
-
-form label {
-    display: grid;
-    grid-template-columns: subgrid;
-}
-
-form label input,
-form label textarea {
-    grid-column: 2 / -1;
-}
-
+/* Projects Grid - Mobile First (1 column) */
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-    gap: 1em;
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+}
+
+/* 2 columns on tablets */
+@media (min-width: 600px) {
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 3 columns on desktops */
+@media (min-width: 900px) {
+    .projects {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .projects article {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
+    display: flex;
+    flex-direction: column;
     padding: 1em;
-    border: 1px solid #eee; 
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: canvas;
 }
 
 .projects article h2 {
-    margin: 0;
+    margin: 0 0 0.5em 0;
+    font-size: 1.25rem;
 }
 
 .projects article img {
     width: 100%;
-    height: auto;
-    display: block;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1em;
 }
 
+/* Home Page specific adjustments */
 .home-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.5em;
-    padding-top: 2em;
+    gap: 1em;
+    padding-top: 1em;
 }
 
 .home-page h1 {
-    font-size: 300%;
     margin: 0;
 }
 
 .home-page > img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 4px solid var(--color-accent); 
     object-fit: cover;
@@ -146,466 +166,43 @@ form label textarea {
 
 .home-page section {
     width: 100%;
-    margin-top: 3em;
+    margin-top: 2em;
 }
 
-
-.resume-container {
-    padding: 1em 0;
-}
-
-.resume-header {
-    text-align: center;
-    margin-bottom: 2.5em;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 1.5em;
-}
-
-.resume-header h2 {
-    margin: 0 0 0.25em 0;
-    font-size: 2.5em;
-    color: #333;
-}
-
-.resume-header p {
-    font-size: 1em;
-    color: #555;
-    margin: 0;
-}
-
-.resume-header a {
-    color: var(--color-accent);
-    text-decoration: none;
-}
-
-.resume-header a:hover {
-    text-decoration: underline;
-}
-
-.cv-section h2 {
-    color: var(--color-accent);
-    border-bottom: 2px solid #eee;
-    padding-bottom: 0.2em;
-}
-
-.resume-entry {
-    margin-bottom: 1.5em;
-}
-
-.resume-entry-header {
+/* Forms - Stack on mobile */
+form {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.5em;
-    margin-bottom: 0.25em;
+    flex-direction: column;
+    gap: 1em;
 }
 
-.resume-entry-header h3 {
-    margin: 0;
-    font-size: 1.2em;
-    font-weight: 600;
-}
-
-.resume-entry-header h3 a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.resume-entry-header h3 a:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
-}
-
-.resume-entry-header h4 {
-    margin: 0;
-    font-style: italic;
-    color: #555;
-    font-size: 0.9em;
-    font-weight: normal;
-}
-
-.resume-entry > p {
-    margin: 0.25em 0;
-}
-
-.resume-entry > ul {
-    margin-top: 0.5em;
-    padding-left: 2em; 
-}
-
-.resume-entry li {
-    margin-bottom: 0.5em;
-}
-
-.resume-entry .skills, .resume-entry .coursework {
-    font-size: 0.9em;
-    color: #444;
-}
-
-.resume-entry strong {
-    font-weight: 600;
-    color: #333;
-}
-
-.cv-section ul {
-    list-style: disc;
-}
-
-.color-scheme {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 80%;
-}
-
-/* GitHub Stats Styling & Summary Stats */
-#profile-stats dl,
-dl.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
-    gap: 0.5em 2em;
-    text-align: center;
-}
-
-#profile-stats dt,
-dl.stats dt {
-    grid-row: 1;
-    font-size: 0.8em;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: oklch(65% 0.1 250);
-}
-
-#profile-stats dd,
-#stats dl.stats dd { /* More specific selector for summary */
-    grid-row: 2;
-    font-size: 250%;
-    font-weight: 300;
-    margin-left: 0;
-    line-height: 1;
-}
-
-/* Specific styling for language breakdown which also uses dl.stats */
-#language-breakdown {
-    margin-top: 1em;
-}
-
-#language-breakdown .lang-stat {
-    display: contents; /* Allows dt/dd to be direct children of the grid */
-}
-
-#language-breakdown dd {
-    font-size: 150%;
-    grid-row: 2;
-    margin-left: 0;
-    font-weight: 300;
-    line-height: 1;
-}
-#language-breakdown dt {
-    grid-row: 1;
-    font-size: 1em;
-}
-
-
-/* LAB 5 STYLES START HERE */
-
-/* Project Year Styling */
-.project-year {
-    display: block;
-    margin-top: 0.5em;
-    font-family: Baskerville, "Goudy Old Style", "Palatino", "Book Antiqua", serif;
-    font-variant-numeric: oldstyle-nums;
-    color: #666;
-    font-size: 0.9em;
-}
-
-@media (prefers-color-scheme: dark) {
-    .project-year {
-        color: #aaa;
+@media (min-width: 600px) {
+    form {
+        display: grid;
+        grid-template-columns: auto 1fr;
     }
 }
 
-/* Chart and Legend Styling */
-.chart-container {
-    display: flex;
-    align-items: center;
-    gap: 2em;
-    flex-wrap: wrap;
-    margin-block: 2em;
-    border: 1px solid oklch(50% 10% 200 / 20%);
-    padding: 1em;
-    border-radius: 5px;
-}
-
-#projects-pie-plot {
-    max-width: 20em;
-    min-width: 15em;
-    flex: 1 1 15em;
-    overflow: visible;
-}
-
-.legend {
-    flex: 2 1 20em;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-    gap: 0.5em 1em;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    cursor: pointer;
-    padding: 0.2em;
+input, textarea, button, select {
+    font: inherit;
+    padding: 0.5em;
     border-radius: 4px;
-    transition: background-color 0.2s;
-}
-
-.legend-item:hover {
-    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
-}
-
-.swatch {
-    width: 1em;
-    aspect-ratio: 1;
-    background: var(--color);
-    border-radius: 50%;
-    display: inline-block;
-}
-
-/* Search Bar Styling */
-.search-bar {
-    width: 100%;
-    padding: 0.75em 1em;
-    font-size: 1em;
-    border-radius: 5px;
     border: 1px solid #ccc;
-    margin-bottom: 2em;
-    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-    .search-bar {
-        background-color: #333;
-        border-color: #555;
-        color: white;
-    }
-    .projects article {
-        border-color: #444;
-    }
-}
-
-
-/* D3 Visualization Interactivity */
-#projects-pie-plot path {
-    cursor: pointer;
-    transition: opacity 300ms ease-in-out;
-}
-
-#projects-pie-plot:has(path:hover) path:not(:hover) {
-    opacity: 0.5;
-}
-
-.selected {
-  --color: oklch(60% 0.25 40) !important;
-}
-
-.selected:is(path) {
-  fill: var(--color);
-}
-
-/* LAB 7 ADDITIONS */
-
-/* Tooltip Info Layout */
-dl.info {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.5em 1em;
-}
-
-dl.info dt {
-    grid-column: 1;
-    font-weight: bold;
-    color: oklch(65% 0.1 250);
-}
-
-dl.info dd {
-    grid-column: 2;
-    margin: 0;
-    font-weight: 300;
-}
-
-/* Tooltip Specific Styles */
-.tooltip {
-    position: fixed;
-    background: oklch(95% 0.02 250 / 0.8);
-    backdrop-filter: blur(5px);
-    padding: 1em;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    max-width: 300px;
-    pointer-events: none; /* Allows mouse events to pass through */
-    z-index: 10;
-}
-
-dl.info {
-    transition-duration: 200ms;
-    transition-property: opacity, visibility;
-}
-
-dl.info[hidden]:not(:hover, :focus-within) {
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* Scatterplot Styles */
-#chart {
-    margin-block: 2em;
-}
-
-#chart svg {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.gridlines line, .gridlines .domain {
-    stroke: oklch(50% 10% 200 / 20%);
-}
-
-.gridlines .domain {
-    stroke: none;
-}
-
-/* LAB 8 STYLES */
-
-/* Circle Transitions */
-circle {
-    transition: all 200ms;
-    transform-origin: center;
-    transform-box: fill-box;
-}
-
-@starting-style {
-  circle {
-    r: 0;
-  }
-}
-
-circle:hover {
-    transform: scale(1.5);
-    stroke: black;
-    stroke-width: 1px;
-}
-
-circle.selected {
-  fill: #ff6b6b;
-  stroke: black;
-  stroke-width: 1.5px;
-}
-
-/* Unit Visualization */
-#files {
-  display: grid;
-  grid-template-columns: minmax(10em, 1fr) 4fr;
-  gap: 0.5em 1em;
-}
-
-#files > div {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: subgrid;
-  border-bottom: 1px solid #eee;
-  padding-block: 0.5em;
-}
-
-#files dt {
-  grid-column: 1;
-  font-family: monospace;
-}
-#files dt small {
-    display: block;
-    opacity: 0.7;
-    font-size: 0.8em;
-}
-
-
-#files dd {
-  grid-column: 2;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: start;
-  align-content: start;
-  gap: 0.15em;
-  padding-top: 0.6em;
-  margin-left: 0;
-}
-
-.loc {
-  display: block;
-  width: 0.5em;
-  aspect-ratio: 1;
-  background: var(--color, steelblue);
-  border-radius: 50%;
-}
-
-/* Scrollytelling Layout */
-#scrolly-1 {
-  position: relative;
-  display: flex;
-  gap: 1rem;
-  margin-block: 3em;
-}
-
-#scrolly-1 > * {
-  flex: 1;
-  min-width: 0;
-}
-
-#scatter-story {
-  position: relative;
-}
-
-#scatter-plot {
-  position: sticky;
-  top: 1rem;
-  height: 90vh;
-}
-
-.step {
-    padding-bottom: 50vh;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background: oklch(98% 0 0 / 0.7);
-    border: 1px solid oklch(90% 0 0);
-    border-radius: 5px;
-}
-
-.step h3 {
-    margin-top: 0;
-}
-
-/* Updated Project Card styles */
+/* Project Footer & Button */
 .project-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     flex-grow: 1;
-    gap: 1em; 
 }
 
 .project-footer {
+    margin-top: auto;
+    padding-top: 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto; 
-    flex-wrap: wrap;
-    gap: 0.5em;
 }
 
 .project-button {
@@ -616,23 +213,45 @@ circle.selected {
     text-decoration: none;
     font-size: 0.9em;
     font-weight: 500;
-    text-align: center;
-    transition: background-color 0.2s;
 }
 
-.project-button:hover {
-    background-color: color-mix(in oklch, var(--color-accent), black 10%);
-    border-bottom: none; 
-    padding: 0.4em 0.8em; 
-    color: white !important;
+.project-year {
+    font-family: serif;
+    font-variant-numeric: oldstyle-nums;
+    opacity: 0.7;
+}
+
+.search-bar {
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+/* Statistics section on Meta page */
+dl.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1em;
+    text-align: center;
+}
+
+dl.stats dt {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+dl.stats dd {
+    font-size: 2rem;
+    margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
-    #files > div {
-        border-bottom-color: #444;
+    .projects article {
+        border-color: #444;
     }
-    .step {
-        background: oklch(25% 0 0 / 0.7);
-        border-color: oklch(35% 0 0);
+    input, textarea, select {
+        background: #222;
+        color: white;
+        border-color: #555;
     }
 }

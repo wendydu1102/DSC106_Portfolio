@@ -1,5 +1,12 @@
 [
   {
+    "title": "CSE 158: Recommender Systems",
+    "year": "2025",
+    "image": "images/cse158.png",
+    "description": "A comprehensive study and implementation of recommendation algorithms, including collaborative filtering and predictive modeling, applied to large-scale datasets.",
+    "url": "https://wendydu1102.github.io/cse158_site/"
+  },
+  {
     "title": "Cloudy Socal",
     "year": "2025",
     "image": "images/Cloudy_Socal.png",
