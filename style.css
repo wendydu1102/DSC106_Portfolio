@@ -137,6 +137,67 @@ nav a.current {
     margin-bottom: 1em;
 }
 
+/* Projects Pie Chart Layout */
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+#projects-pie-plot {
+    width: 100%;
+    max-width: 250px; /* Resize for mobile to not take up whole page */
+    height: auto;
+}
+
+@media (min-width: 600px) {
+    .chart-container {
+        flex-direction: row;
+    }
+    #projects-pie-plot {
+        max-width: 300px;
+    }
+}
+
+.legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1em;
+    flex: 1;
+    list-style: none;
+    padding: 1em;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.swatch {
+    width: 1.2em;
+    height: 1.2em;
+    background-color: var(--color);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Search Bar */
+.search-bar {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
 /* Home Page Profile */
 .home-page {
     display: flex;

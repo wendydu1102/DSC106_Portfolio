@@ -1,5 +1,12 @@
 [
   {
+    "title": "Sunny Cloudy Socal",
+    "year": "2025",
+    "image": "images/dsc106_final.png",
+    "description": "An advanced interactive storytelling project focusing on complex datasets and user engagement through specialized visualization techniques.",
+    "url": "https://wendydu1102.github.io/Sunny_Socal/"
+  },
+  {
     "title": "Recommender Systems",
     "year": "2025",
     "image": "images/cse158.png",
